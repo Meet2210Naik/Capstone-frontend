@@ -1,0 +1,99 @@
+*
+{
+    padding: 0;
+    margin: 0;
+  
+} 
+
+.page {
+
+ min-height: 100vh;
+  width: 100vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-image: url("./img/login-background-img.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+.login-panel
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 60rem;
+    min-height: 50vh;
+    gap: 25px;
+}
+
+.welcome-block
+{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    min-height: 45vh;
+}
+
+.socials-panel
+{
+    display: flex;
+    justify-content: space-between;
+    width: 15rem;
+}
+
+
+
+.login-card
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    width: 50rem;
+    gap: 10px;
+}
+
+.login-card-title
+{
+    text-align: center;
+    font-weight:20px;
+
+}
+
+input {
+  background-color: rgba(255, 255, 255, 0.7); 
+  border: 1px solid #ccc;   
+  padding: 0.5rem;
+  border-radius: 5px;
+  outline: none;
+    color: black;
+}
+
+input:focus {
+  border-color: #007bff;    
+  box-shadow: 0 0 5px rgba(0,123,255,0.5);
+}
+
+.link-forget-pass
+{
+    text-decoration: none;
+    color: white;
+    text-align: center;
+}
+
+img
+{
+    width: 2rem;
+    height: 2rem;
+}
+
+.socials-panel a img:hover {
+    transition: transform 0.2s;
+  transform: scale(1.1);
+}
