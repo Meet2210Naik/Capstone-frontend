@@ -9,7 +9,7 @@ function App() {
   return (
    <Routes>
      {/* Default page */}
-      <Route path="/" element={<Navigate to="/Login" />} />
+      <Route path="/" element={<Navigate to="/Signin" />} />
 
       {/* Pages */}
       <Route path="/Login" element={<Login />} />
