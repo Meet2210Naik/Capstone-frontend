@@ -1,0 +1,359 @@
+/* ================= PAGE LAYOUT ================= */
+.signup-page {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  font-family: Arial, sans-serif;
+}
+
+/* ================= LEFT PANEL ================= */
+.signup-info-panel {
+  flex: 2;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  padding: 0;
+}
+
+.signup-info-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.25);
+  z-index: 1;
+}
+
+/* Each image column */
+.bg-layer {
+  flex: 1;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  transform-origin: left;
+  transform: scaleX(0);
+  animation: slitReveal 1s ease forwards;
+
+  z-index: 1;   
+}
+
+/* Different images */
+.bg1 { background-image: url("../pages/img/work1.webp"); animation-delay: 0.2s; }
+.bg2 { background-image: url("../pages/img/work2.webp"); animation-delay: 0.4s; }
+.bg3 { background-image: url("../pages/img/work3.webp"); animation-delay: 0.6s; }
+.bg4 { background-image: url("../pages/img/work4.webp"); animation-delay: 0.8s; }
+.bg5 { background-image: url("../pages/img/work5.webp"); animation-delay: 1s; }
+
+@keyframes slitReveal {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* ================= INFO CONTENT ================= */
+.info-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding: 60px;
+  max-width: 600px;
+  color: white;
+}
+
+/* Staggered Text Animation */
+.info-content h1,
+.info-content p,
+.info-content li {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: textReveal 0.6s ease forwards;
+}
+
+.info-content h1 { animation-delay: 0.1s; font-weight: bolder; }
+.info-content p { animation-delay: 0.3s; }
+.info-content li:nth-child(1) { animation-delay: 0.5s; }
+.info-content li:nth-child(2) { animation-delay: 0.6s; }
+.info-content li:nth-child(3) { animation-delay: 0.7s; }
+.info-content li:nth-child(4) { animation-delay: 0.8s; }
+.info-content li:nth-child(5) { animation-delay: 0.9s; }
+
+@keyframes textReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= RIGHT PANEL ================= */
+.signup-form-panel {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #020617;
+}
+
+.signup-form {
+  width: 70%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ================= TOGGLE SWITCH ================= */
+.toggle-wrapper { margin-bottom: 25px; }
+
+.toggle-container {
+  position: relative;
+  display: flex;
+  width: 220px;
+  height: 45px;
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.toggle-highlight {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  border-radius: 40px;
+  background: linear-gradient(135deg, #2563eb, #0ea5e9);
+  transition: transform 0.35s ease, background 0.35s ease;
+  z-index: 1;
+}
+
+.toggle-highlight.company {
+  transform: translateX(100%);
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+}
+
+.toggle-option {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  z-index: 2;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.toggle-option.active { font-weight: 700; }
+
+/* ================= FORM ================= */
+.signup-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ================= FLOATING INPUT LABEL + ERROR ================= */
+.input-group {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 90px 14px 12px; /* right padding increased */
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  background: transparent;
+  color: white;
+}
+
+
+/* Label positioning */
+.input-group label {
+  position: absolute;
+  left: 12px;
+  top: 40%;
+  transform: translateY(-20%);
+  background: #020617;
+  padding: 0 6px;
+  color: gray;
+  font-size: 15px;
+  transition: 0.3s ease;
+  pointer-events: none;
+}
+
+/* Float label */
+.input-group input:focus + label,
+.input-group input.has-content + label,
+.input-group input.has-error + label {
+  top: -9px;
+  font-size: 12px;
+  color: #4f46e5;
+}
+
+.input-group input.has-error { color: #ff4d4f; }
+
+/* Focus input effect */
+.input-group input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* Error icon */
+.input-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  line-height: 1; 
+  display: flex;  
+  align-items: center; 
+  justify-content: center; 
+  color: #ff4d4f;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.input-group input.has-error ~ .input-icon { opacity: 1; }
+
+/* Error message inside input field */
+.input-error-text {
+  position: absolute;
+  right: 35px;  /* leaves space for icon */
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  color: #ff4d4f;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.input-error-text {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.input-group input.has-error ~ .input-error-text {
+  opacity: 1;
+}
+
+
+/* ================= REMEMBER ME CHECKBOX ================= */
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.remember input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+  transition: border 0.3s, background 0.3s;
+}
+
+.remember input[type="checkbox"]:hover { border-color: #2563eb; }
+
+.remember input[type="checkbox"]:checked {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+.remember input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 7px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  animation: checkmark 0.3s ease forwards;
+}
+
+@keyframes checkmark {
+  0% { transform: rotate(45deg) scale(0); opacity: 0; }
+  100% { transform: rotate(45deg) scale(1); opacity: 1; }
+}
+
+/* ================= SUBMIT BUTTON ================= */
+.signup-btn {
+  position: relative;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.signup-btn:hover { transform: scale(1.03); }
+
+/* ================= LOADING BAR ================= */
+.signup-btn.loading::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: orange;
+  width: 0%;
+  border-radius: 8px;
+  z-index: 1;
+  animation: loadingBar 1.2s forwards;
+}
+
+.btn-arrow {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  opacity: 0;
+  z-index: 2;
+}
+
+.signup-btn.loading .btn-arrow {
+  opacity: 1;
+  animation: arrowMove 1.2s forwards;
+}
+
+@keyframes loadingBar {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+@keyframes arrowMove {
+  0% { left: 10px; opacity: 1; }
+  50% { left: 50%; transform: translateX(-50%) translateY(-50%); }
+  100% { left: calc(100% - 30px); opacity: 0; }
+}
+
+.signup-btn .btn-text { position: relative; z-index: 2; }
+.signup-btn.loading .btn-text { opacity: 0; }
+
+.signup-btn.loading::after {
+  content: "Welcome";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 600;
+  z-index: 2;
+}
